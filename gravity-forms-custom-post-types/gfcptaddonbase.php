@@ -300,14 +300,14 @@ if ( ! class_exists( 'GFCPTAddonBase' ) ) {
 			return $post_types;
 		}
 
-		/*
-		 * setup a field if it is linked to a post type
-		 */
-		function setup_post_type_field( &$field, $post_type ) {
-			$first_choice             = $field['choices'][0]['text'];
-			$field['choices']         = $this->load_post_type_choices( $post_type, $first_choice, $field );
-			$field->enableChoiceValue = true;
-		}
+	/*
+	 * setup a field if it is linked to a post type
+	 */
+	function setup_post_type_field( &$field, $post_type ) {
+		$first_choice             = isset( $field['choices'][0]['text'] ) ? $field['choices'][0]['text'] : '';
+		$field['choices']         = $this->load_post_type_choices( $post_type, $first_choice, $field );
+		$field->enableChoiceValue = true;
+	}
 
 		function load_post_type_choices( $post_type, $first_choice, $field ) {
 			$posts = $this->load_posts_hierarchical( $post_type, $field->formId, $field->id );
