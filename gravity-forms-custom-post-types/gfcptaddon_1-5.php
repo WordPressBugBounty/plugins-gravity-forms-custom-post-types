@@ -67,7 +67,8 @@ if ( ! class_exists( 'GFCPTAddon1_5' ) ) {
 		function get_form_parent_post_id( $form ) {
 			foreach ( $form['fields'] as $field ) {
 				if ( $field['type'] == 'select' && $field['setParentPost'] ) {
-					$parent_id = RGForms::post( 'input_' . $field['id'] );
+					$forms_class = class_exists( 'RGForms' ) ? 'RGForms' : 'GFForms';
+					$parent_id   = $forms_class::post( 'input_' . $field['id'] );
 
 					return $parent_id;
 				}
